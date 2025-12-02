@@ -2,8 +2,8 @@
 set -euo pipefail
 
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-DATA_DIR="$PROJECT_DIR/.pgdata"
-CONTAINER_NAME="bdf-demo-postgres"
+DATA_DIR="$PROJECT_DIR/app-pgdata"
+CONTAINER_NAME="bdf-demo-ia"
 IMAGE="docker.io/library/postgres:16"
 
 mkdir -p "$DATA_DIR"
@@ -17,6 +17,6 @@ podman run \
   --env POSTGRES_USER=postgres \
   --env POSTGRES_PASSWORD=postgres \
   --env POSTGRES_DB=bdf_demo \
-  --publish 5432:5432 \
+  --publish 5434:5432 \
   --volume "$DATA_DIR:/var/lib/postgresql/data:z" \
   "$IMAGE"
