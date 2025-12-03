@@ -6,15 +6,17 @@ class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(
         env_file=".env",
+        env_file_encoding="utf-8",
         case_sensitive=True
     )
 
-    # Configuration PostgreSQL (selon run_postgres.sh)
-    POSTGRES_USER: str = "postgres"
-    POSTGRES_PASSWORD: str = "postgres"
-    POSTGRES_DB: str = "bdf_demo"
-    POSTGRES_HOST: str = "localhost"
-    POSTGRES_PORT: int = 5434
+    # Configuration PostgreSQL
+    # Les valeurs sont lues depuis le fichier .env à la racine du projet
+    POSTGRES_USER: str
+    POSTGRES_PASSWORD: str
+    POSTGRES_DB: str
+    POSTGRES_HOST: str
+    POSTGRES_PORT: int
 
     @property
     def database_url(self) -> str:

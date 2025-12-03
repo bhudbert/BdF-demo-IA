@@ -34,12 +34,21 @@ source .venv/bin/activate  # Linux/Mac
 .venv\Scripts\activate  # Windows
 ```
 
-2. Installer les dépendances :
+2. Configurer les variables d'environnement :
+```bash
+# Copier le template de configuration
+cp .env.example .env
+
+# Éditer .env si nécessaire (les valeurs par défaut fonctionnent avec run_postgres.sh)
+nano .env
+```
+
+3. Installer les dépendances :
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Pour le développement et les tests :
+4. Pour le développement et les tests :
 ```bash
 pip install -r requirements-dev.txt
 ```

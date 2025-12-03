@@ -24,9 +24,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Inclure les routeurs
-app.include_router(persons.router)
-app.include_router(projects.router)
+# Inclure les routeurs avec le préfixe /api/v1
+app.include_router(persons.router, prefix="/api/v1")
+app.include_router(projects.router, prefix="/api/v1")
 
 
 @app.get("/")
@@ -38,8 +38,8 @@ def read_root():
         "architecture": "Modulaire avec packages api/core/repositories/db/models",
         "endpoints": {
             "docs": "/docs",
-            "persons": "/persons",
-            "projects": "/projects"
+            "persons": "/api/v1/persons",
+            "projects": "/api/v1/projects"
         }
     }
 
