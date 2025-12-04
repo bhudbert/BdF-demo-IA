@@ -29,3 +29,9 @@ class PersonRepository(BaseRepository[Person]):
             (self.model.first_name.ilike(search_pattern))
         ).all()
 
+    def get_by_profile(self, profile_id: int, skip: int = 0, limit: int = 100) -> List[Person]:
+        """Récupérer toutes les personnes d'un profil donné"""
+        return self.db.query(self.model).filter(
+            self.model.profile_id == profile_id
+        ).offset(skip).limit(limit).all()
+

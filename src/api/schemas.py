@@ -17,6 +17,7 @@ class PersonBase(BaseModel):
     mobile: Optional[str] = None
     team: Optional[str] = None
     manager: Optional[str] = None
+    profile_id: Optional[int] = None
 
 
 class PersonCreate(PersonBase):
@@ -37,6 +38,7 @@ class PersonUpdate(BaseModel):
     mobile: Optional[str] = None
     team: Optional[str] = None
     manager: Optional[str] = None
+    profile_id: Optional[int] = None
 
 
 class Person(PersonBase):
@@ -55,6 +57,7 @@ class ProjectBase(BaseModel):
     project_manager_id: Optional[int] = None
     dev_line_id: Optional[int] = None
     lead_developer_id: int
+    category_id: Optional[int] = None
 
 
 class ProjectCreate(ProjectBase):
@@ -69,6 +72,7 @@ class ProjectUpdate(BaseModel):
     project_manager_id: Optional[int] = None
     dev_line_id: Optional[int] = None
     lead_developer_id: Optional[int] = None
+    category_id: Optional[int] = None
 
 
 class Project(ProjectBase):
@@ -79,3 +83,57 @@ class Project(ProjectBase):
     lead_developer_rel: Optional[Person] = None
 
     model_config = ConfigDict(from_attributes=True)
+
+
+# ========== Schémas Category ==========
+
+class CategoryBase(BaseModel):
+    """Schéma de base pour une catégorie de projet"""
+    name: str
+    description: Optional[str] = None
+
+
+class CategoryCreate(CategoryBase):
+    """Schéma pour créer une catégorie"""
+    pass
+
+
+class CategoryUpdate(BaseModel):
+    """Schéma pour mettre à jour une catégorie"""
+    name: Optional[str] = None
+    description: Optional[str] = None
+
+
+class Category(CategoryBase):
+    """Schéma pour lire une catégorie (avec ID)"""
+    id: int
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+# ========== Schémas Profile ==========
+
+class ProfileBase(BaseModel):
+    """Schéma de base pour un profil professionnel"""
+    name: str
+    description: Optional[str] = None
+
+
+class ProfileCreate(ProfileBase):
+    """Schéma pour créer un profil"""
+    pass
+
+
+class ProfileUpdate(BaseModel):
+    """Schéma pour mettre à jour un profil"""
+    name: Optional[str] = None
+    description: Optional[str] = None
+
+
+class Profile(ProfileBase):
+    """Schéma pour lire un profil (avec ID)"""
+    id: int
+
+    model_config = ConfigDict(from_attributes=True)
+
+

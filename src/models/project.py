@@ -20,7 +20,12 @@ class Project(Base):
     dev_line_id = Column(Integer, ForeignKey("persons.id"), nullable=True)
     lead_developer_id = Column(Integer, ForeignKey("persons.id"), nullable=False)
 
+    # Clé étrangère vers Category
+    category_id = Column(Integer, ForeignKey("categories.id"), nullable=True)
+
     # Relations
+    category_rel = relationship("Category", back_populates="projects")
+
     project_manager_rel = relationship(
         "Person",
         back_populates="managed_projects",

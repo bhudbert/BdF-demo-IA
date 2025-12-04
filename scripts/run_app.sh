@@ -15,7 +15,7 @@ fi
 source .venv/bin/activate
 
 # Définir PYTHONPATH
-export PYTHONPATH="$PROJECT_DIR:$PYTHONPATH"
+export PYTHONPATH="$PROJECT_DIR"
 
 # Vérifier la connexion à PostgreSQL
 echo "Vérification de la connexion à PostgreSQL..."

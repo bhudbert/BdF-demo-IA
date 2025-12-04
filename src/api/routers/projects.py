@@ -70,6 +70,18 @@ def read_projects(
     return repository.get_all(skip=skip, limit=limit)
 
 
+@router.get("/by-category/{category_id}", response_model=List[schemas.Project])
+def read_projects_by_category(
+    category_id: int,
+    skip: int = 0,
+    limit: int = 100,
+    repository: ProjectRepository = Depends(get_project_repository)
+):
+    """Récupérer tous les projets d'une catégorie donnée"""
+    projects = repository.get_by_category(category_id, skip=skip, limit=limit)
+    return projects
+
+
 @router.get("/{project_id}", response_model=schemas.Project)
 def read_project(
     project_id: int,

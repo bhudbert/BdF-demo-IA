@@ -11,7 +11,6 @@ class Settings(BaseSettings):
     )
 
     # Configuration PostgreSQL
-    # Les valeurs sont lues depuis le fichier .env à la racine du projet
     POSTGRES_USER: str
     POSTGRES_PASSWORD: str
     POSTGRES_DB: str

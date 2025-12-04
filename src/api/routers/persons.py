@@ -42,6 +42,18 @@ def read_persons(
     return repository.get_all(skip=skip, limit=limit)
 
 
+@router.get("/by-profile/{profile_id}", response_model=List[schemas.Person])
+def read_persons_by_profile(
+    profile_id: int,
+    skip: int = 0,
+    limit: int = 100,
+    repository: PersonRepository = Depends(get_repository)
+):
+    """Récupérer toutes les personnes d'un profil donné"""
+    persons = repository.get_by_profile(profile_id, skip=skip, limit=limit)
+    return persons
+
+
 @router.get("/{person_id}", response_model=schemas.Person)
 def read_person(
     person_id: int,
