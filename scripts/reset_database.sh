@@ -34,6 +34,7 @@ echo ""
 # Connexion à PostgreSQL et suppression des anciennes tables
 echo "🗑️  Suppression de toutes les tables..."
 podman exec -it bdf-demo-ia psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" -c "
+    DROP TABLE IF EXISTS tasks CASCADE;
     DROP TABLE IF EXISTS projets CASCADE;
     DROP TABLE IF EXISTS personnes CASCADE;
     DROP TABLE IF EXISTS projects CASCADE;
@@ -44,7 +45,7 @@ podman exec -it bdf-demo-ia psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" -c "
 " 2>&1 | grep -E "(DROP|status|succès)" || echo "Tables déjà supprimées ou inexistantes"
 
 echo ""
-echo "🆕 Les nouvelles tables (persons, projects, categories, profiles) seront créées au prochain démarrage de l'application"
+echo "🆕 Les nouvelles tables (persons, projects, tasks, categories, profiles) seront créées au prochain démarrage de l'application"
 echo ""
 echo "============================================"
 echo "✅ Base de données vidée"

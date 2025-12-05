@@ -50,4 +50,5 @@ class Person(Base):
         back_populates="lead_developer_rel",
         foreign_keys="Project.lead_developer_id"
     )
+    tasks = relationship("Task", back_populates="assigned_person_rel")
 

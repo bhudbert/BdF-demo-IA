@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from src.db.session import engine
 from src.db.base import Base
-from src.api.routers import persons, projects
+from src.api.routers import persons, projects, tasks
 from src.api.routers import categories, profiles
 
 # Créer les tables dans la base de données
@@ -28,6 +28,7 @@ app.add_middleware(
 # Inclure les routeurs avec le préfixe /api/v1
 app.include_router(persons.router, prefix="/api/v1")
 app.include_router(projects.router, prefix="/api/v1")
+app.include_router(tasks.router, prefix="/api/v1")
 app.include_router(categories.router, prefix="/api/v1")
 app.include_router(profiles.router, prefix="/api/v1")
 
@@ -43,6 +44,7 @@ def read_root():
             "docs": "/docs",
             "persons": "/api/v1/persons",
             "projects": "/api/v1/projects",
+            "tasks": "/api/v1/tasks",
             "categories": "/api/v1/categories",
             "profiles": "/api/v1/profiles"
         }

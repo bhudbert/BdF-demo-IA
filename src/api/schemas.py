@@ -1,4 +1,5 @@
 from typing import Optional
+from datetime import date
 from pydantic import BaseModel, EmailStr, ConfigDict
 
 
@@ -135,5 +136,42 @@ class Profile(ProfileBase):
     id: int
 
     model_config = ConfigDict(from_attributes=True)
+
+
+# ========== Schémas Task ==========
+
+class TaskBase(BaseModel):
+    """Schéma de base pour une tâche"""
+    title: str
+    description: Optional[str] = None
+    start_date: date
+    end_date: date
+    project_id: int
+    assigned_person_id: int
+
+
+class TaskCreate(TaskBase):
+    """Schéma pour créer une tâche"""
+    pass
+
+
+class TaskUpdate(BaseModel):
+    """Schéma pour mettre à jour une tâche"""
+    title: Optional[str] = None
+    description: Optional[str] = None
+    start_date: Optional[date] = None
+    end_date: Optional[date] = None
+    project_id: Optional[int] = None
+    assigned_person_id: Optional[int] = None
+
+
+class Task(TaskBase):
+    """Schéma pour lire une tâche (avec ID)"""
+    id: int
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+
 
 

@@ -41,4 +41,5 @@ class Project(Base):
         back_populates="lead_developer_projects",
         foreign_keys=[lead_developer_id]
     )
+    tasks = relationship("Task", back_populates="project_rel")
 
